@@ -63,3 +63,27 @@ const persona: Persona = new Persona("juan")
 // let personaPosible: PersonaInterface = persona // Error la propiedad name es privada (private name: string;)
 
 // Shape: se puede validar el mismo objero(clase) si son iguales auqie tengan diferente nombre. Tienen el mismo contenido
+
+// Transpilar = generar a partir de código en un lenguaje código en otro lenguaje
+// Typescript => Javascript | Los navegadores leen javascript
+
+// Enum
+const NI = {
+    ARG: "dni",
+    ES: "nie",
+} // Es una const
+
+type NITYPE = "pasaporte" | "nie" // Tipos
+
+enum NIENUM {
+    ARG= "dni",
+    ES= "nie",
+}  // Es un tipo
+
+const dniConst = NI.ARG // Si se cambia el "DNI" = ARG: "Pasaporte" | dniConst sigue funcionando
+const dniEnum = NIENUM.ARG
+
+const dimeELNI = (ni: NITYPE) => ni;
+
+dimeELNI("pasaporte") // Solo puede tener dos valores "pasaporte" y "nie"
+
