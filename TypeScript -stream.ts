@@ -73,7 +73,7 @@ const NI = {
     ES: "nie",
 } // Es una const
 
-type NITYPE = "pasaporte" | "nie" // Tipos
+type NITYPE = "pasaporte" | "nie" // Tipos | Union types
 
 enum NIENUM {
     ARG= "dni",
@@ -87,3 +87,45 @@ const dimeELNI = (ni: NITYPE) => ni;
 
 dimeELNI("pasaporte") // Solo puede tener dos valores "pasaporte" y "nie"
 
+// Intersection types 
+
+type A = string | number; // union: Elementos que se comparten entre string y number
+
+type B = string & number; // intersection: Elementos que se suman entre string y number
+
+const metodoTypeIntersection = (a : A) => a;
+
+// Ejemplo
+interface Alumno {
+    nombre: string;
+    nota: number;
+}
+
+interface Profesor {
+    nombre: string;
+    legajo: string;
+}
+
+type AlumnoUProfesor = Alumno | Profesor
+
+const personaType: AlumnoUProfesor = {
+    nombre:"Juan",
+    nota: 18,
+} // personaType ahora es alumno porque tiene nota
+
+// unknown 
+
+// unknown vs any 
+
+let numUnk: unknown = 1
+
+// Type assertion
+const texto: string = numUnk as string  //  Indica a TypeScript que trates a numUnk como si fuera de tipo string.
+
+// Otros types
+const myArreglo: number[] = [1,2,3,4,5] // Arreglo de numeros
+const myArreglo2: [number] = [1] // Arreglo de UN UNICO numero [number]
+
+let colores = ["rojo", "amarillo", "verde"] as const; // as const = hace que TypeScript no generalize | unicamnete estos valores.
+
+console.log(colores); // Type readonly UNICAMENTE de "rojo", "amarillo" y "verde"
