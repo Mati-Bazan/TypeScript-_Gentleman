@@ -129,3 +129,55 @@ const myArreglo2: [number] = [1] // Arreglo de UN UNICO numero [number]
 let colores = ["rojo", "amarillo", "verde"] as const; // as const = hace que TypeScript no generalize | unicamnete estos valores.
 
 console.log(colores); // Type readonly UNICAMENTE de "rojo", "amarillo" y "verde"
+
+// generico
+const metodoGenerico = <T>(x: T): T => x;
+
+const a = metodoGenerico<number>(1)
+const b = metodoGenerico<string>("Hola")
+
+interface Saludar<T> {
+    saludar(x: T): string;
+} 
+
+const PersonaSaludo: Saludar<string> = {
+    saludar(x: string) {
+        return `Hola ${x}`
+    }
+}
+
+const Perro: Saludar<number> = {
+    saludar(x: number) {
+        return `Hola ${x}, veces`
+    } 
+} 
+
+// function overloading | Sobrecarga de funciones 
+function metodoStrONum(x: string): number;
+function metodoStrONum(x: number): string;
+
+function metodoStrONum(x: string | number): string | number {
+    if (typeof x == "number") {
+        return x.toString()
+    }
+    if (typeof x == "string") {
+        return x.length
+    }
+    return x;
+}
+metodoStrONum(1)
+
+interface Persona {
+    name: string;
+    saludar(x: string): string;
+}
+
+interface Perro {
+    raza: string;
+    saludar (x: number): number;
+}
+
+enum Claves {
+   name = "name",
+   raza = "raza",
+}
