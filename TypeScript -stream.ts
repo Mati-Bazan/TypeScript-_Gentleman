@@ -181,3 +181,35 @@ enum Claves {
    name = "name",
    raza = "raza",
 }
+
+type Mamal = {
+    [key in Claves]: string;
+}
+
+// hagamos un tipo que dependa de una property para el resultado de la función
+type Dependant <T extends {property: any}> = T["property"];
+
+type Independent = {
+    property: number;
+}
+
+const dependant: Dependant<Independent> = 1;
+
+enum Numbers1 {
+    "NUMBER1"= "Number1",
+    "NUMBER2"= "Number2",
+}
+
+enum Numbers2 {
+    "NUMBER3"= "Number3",
+    "NUMBER4"= "Number4",
+}
+
+const MyNumbers = {...Numbers1, ...Numbers2} as const;
+const mixValues = Object.values(MyNumbers)
+
+type MixNumbers = (typeof mixValues)[number];
+
+type Enum = {
+    [key in MixNumbers] : any;
+}
